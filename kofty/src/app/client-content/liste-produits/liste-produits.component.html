@@ -1,0 +1,98 @@
+<!--Hero Section-->
+<div class="hero-section hero-background">
+  <h1 class="page-title">Organic Fruits</h1>
+</div>
+
+<!--Navigation section-->
+<div class="container">
+  <nav class="biolife-nav">
+    <ul>
+      <li class="nav-item"><a href="index-2.html" class="permal-link">Home</a></li>
+      <li class="nav-item"><a href="#" class="permal-link">Natural Organic</a></li>
+      <li class="nav-item"><span class="current-page">Fresh Fruit</span></li>
+    </ul>
+  </nav>
+</div>
+
+<div class="page-contain category-page left-sidebar mb-5">
+  <div class="container">
+    <div class="row">
+      <!-- Main content -->
+      <div id="main-content" class="main-content col-lg-9 col-md-12 col-sm-12 col-xs-12">
+        <div class="product-category grid-style">
+          <div class="row">
+            <div *ngFor="let produit of listeProduits" class="col-md-4 col-sm-6 my-2">
+              <div class="card text-center p-4">
+                <a routerLink="/produits/{{ produit.nom }}"><img src="{{produit.image}}" alt=""
+                    class="card-img-top"></a>
+                <div class="card-body">
+                  <a routerLink="/produits/{{ produit.nom }}">
+                    <h5 class="prod-name">{{produit.nom}}</h5>
+                  </a>
+                  <ins><span class="price-ins">{{produit.prix | currency: 'MAD'}}</span></ins>
+                  <del><span class="price-del">{{produit.prix | currency: 'MAD'}}</span></del>
+                  <hr>
+                  <button class="btn btn-block btn-light btn-cart">ADD TO CART</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" *ngIf="pageNumber !== 1">
+            <div class="col-md-6">
+
+            </div>
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-9" style="padding-left: 30%;">
+                  <ngb-pagination [(page)]='pageNumber' [(pageSize)]='pageSize' [(collectionSize)]='totalElements'
+                    [maxSize]='3' [boundaryLinks]='true' (pageChange)="loadProduits()">
+
+                  </ngb-pagination>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- Sidebar -->
+      <aside id="sidebar" class="sidebar col-lg-3 col-md-12 col-sm-12 col-xs-12">
+        <div class="biolife-mobile-panels">
+          <span class="biolife-current-panel-title">Sidebar</span>
+          <a class="biolife-close-btn" href="#" data-object="open-mobile-filter">&times;</a>
+        </div>
+        <div class="sidebar-contain">
+          <div class="widget biolife-filter">
+            <h4 class="wgt-title">Categories</h4>
+            <div class="wgt-content">
+              <ul class="cat-list">
+                <li *ngFor="let categorie of listeCategories" class="cat-list-item"><a
+                    routerLink="/categories/{{ categorie.nom }}" class="cat-link">{{ categorie.nom }}</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="widget price-filter biolife-filter">
+            <h4 class="wgt-title">Prix</h4>
+            <div class="wgt-content">
+              <div class="frm-contain">
+                <form action="#" name="price-filter" id="price-filter" method="get">
+                  <p class="f-item">
+                    <label for="pr-from">MAD</label>
+                    <input class="input-number" type="number" id="pr-from" value="" name="price-from">
+                  </p>
+                  <p class="f-item">
+                    <label for="pr-to">to MAD</label>
+                    <input class="input-number" type="number" id="pr-to" value="" name="price-from">
+                  </p>
+                  <p class="f-item"><button class="btn-submit" type="submit">go</button></p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>

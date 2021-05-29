@@ -1,0 +1,56 @@
+.btn-cart {
+  background-color: #7FAF51;
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  height: 35px !important;
+  outline: none;
+  font-family: 'Cairo', sans-serif;
+  border-radius: 15px;
+}
+
+.btn-cart:hover {
+  background-color: #888888;
+}
+
+
+.price-ins {
+  color: #111111;
+  font-weight: 900;
+  font-family: Cairo, sans-serif;
+  font-size: 16px;
+}
+
+.price-del {
+  color: #AAA;
+  font-weight: 500;
+  font-family: Cairo, sans-serif;
+  font-size: 10px;
+}
+
+
+.prod-name {
+  font-size: 20px;
+  color: #7FAF51;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
+.fa{
+    font-size: 20px!important;
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

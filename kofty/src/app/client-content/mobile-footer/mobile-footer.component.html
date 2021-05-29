@@ -1,0 +1,9 @@
+<div class="mobile-footer">
+  <div class="mobile-footer-inner">
+    <div *ngFor="let categorie of listeCategories" class="mobile-block block-menu-main">
+      <a class="menu-bar menu-toggle btn-toggle" routerLink="/categories/{{ categorie.nom }}">
+        <span class="text">{{ categorie.nom }}</span>
+      </a>
+    </div>
+  </div>
+</div>

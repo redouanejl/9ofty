@@ -1,0 +1,46 @@
+.active{
+    background:  #7FAF51!important;
+    color: white;
+}
+.active:hover{
+    color: white!important;
+}
+
+a::after{
+    content: none!important;
+}
+
+.prod-name{
+    font-size: 20px;
+}
+
+.price-ins{
+    color: #111111;
+    font-weight: 900;
+    font-family: Cairo,sans-serif;
+    font-size: 16px;
+}
+
+.price-del{
+    color: #AAA;
+    font-weight: 500;
+    font-family: Cairo,sans-serif;
+    font-size: 10px;
+}
+.btn-cart{
+    background-color: #7FAF51;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    outline: none;
+    font-family: 'Cairo', sans-serif;
+    border-radius: 15px;
+}
+.btn-cart:hover{
+    background-color: #888888;
+}
+
+#see-more{
+    color: white;
+}

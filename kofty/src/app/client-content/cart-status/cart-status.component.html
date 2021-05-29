@@ -1,0 +1,73 @@
+<div class="minicart-contain">
+  <a routerLink="/cart" style="text-decoration: none" class="link-to">
+    <span class="icon-qty-combine">
+      <i class="icon-cart-mini biolife-icon"></i>
+      <span class="qty">{{ totalQuantity }}</span>
+    </span>
+    <span class="title">Mon panier </span>
+    <span class="sub-total">{{ totalPrice | currency: "MAD" }}</span>
+  </a>
+  <div class="cart-content" *ngIf="lignesCommande.length > 0">
+    <div class="cart-inner">
+      <ul class="products">
+        <li *ngFor="let item of lignesCommande">
+          <div class="minicart-item">
+            <div class="thumb">
+              <a href="#"
+                ><img
+                  src="{{ item.produit.image }}"
+                  width="90"
+                  height="90"
+                  alt="{{ item.produit.nom }}"
+              /></a>
+            </div>
+            <div class="left-info">
+              <div class="product-title">
+                <a routerLink="produits/{{ item.id }}" class="product-name">{{
+                  item.produit.nom
+                }}</a>
+              </div>
+              <div class="price">
+                <ins
+                  ><span class="price-amount">{{
+                    item.produit.prix | currency: "MAD"
+                  }}</span></ins
+                >
+                <del
+                  ><span class="price-amount">{{
+                    item.produit.prix + 2 | currency: "MAD"
+                  }}</span></del
+                >
+              </div>
+              <div class="qty">
+                <label for="cart[id124][qty]">Qty:</label>
+                <input
+                  type="number"
+                  class="input-qty"
+                  [max]="MAX_QUANTITE"
+                  min="1"
+                  value="{{ item.quantite }}"
+                  onkeydown="return false"
+                  disabled
+                  #value
+                />
+              </div>
+            </div>
+            <div class="action">
+              <a (click)="isEditMode(item, value.value)" class="edit"
+                ><i class="fas fa-edit" aria-hidden="true"></i
+              ></a>
+              <a class="remove" (click)="removeLigne(item)"
+                ><i class="fas fa-trash" aria-hidden="true"></i
+              ></a>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <p class="btn-control">
+        <a routerLink="cart" class="btn view-cart">view cart</a>
+        <a routerLink="checkout" class="btn">checkout</a>
+      </p>
+    </div>
+  </div>
+</div>

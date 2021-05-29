@@ -1,0 +1,107 @@
+<!--Hero Section-->
+<div class="hero-section hero-background">
+  <h1 class="page-title">Organic Fruits</h1>
+</div>
+
+<!--Navigation section-->
+<div class="container">
+  <nav class="biolife-nav">
+    <ul>
+      <li class="nav-item">
+        <a href="index-2.html" class="permal-link">Home</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="permal-link">Natural Organic</a>
+      </li>
+      <li class="nav-item"><span class="current-page">Fresh Fruit</span></li>
+    </ul>
+  </nav>
+</div>
+
+<div class="page-contain single-product">
+  <div class="container">
+    <!-- Main content -->
+    <div id="main-content" class="main-content">
+      <div class="sumary-product single-layout row">
+        <div class="col-lg-6 col-md-8 col-sm-12">
+          <img src="{{ produit?.image }}" alt="" class="w-100 h-100" />
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <div class="product-attribute w-100 my-5">
+            <h3 class="title">{{ produit?.nom | uppercase }}</h3>
+            <div class="price">
+              <ins
+                ><span class="price-amount"
+                  >{{ produit?.prix | currency: "MAD" }} /
+                  {{ produit?.contenance }}</span
+                ></ins
+              >
+            </div>
+            <span class="sku">Categorie : {{ produit?.categorie.nom }}</span>
+          </div>
+          <div class="action-form w-100">
+            <div class="quantity-box pt-3">
+              <span class="title">Quantity:</span>
+              <hr />
+              <div class="qty-input w-100">
+                <input
+                  class="w-100"
+                  type="number"
+                  name="qty12554"
+                  [max]="MAX_QUANTITE"
+                  min="1"
+                  step="1"
+                  [(ngModel)]="quantite"
+                />
+              </div>
+            </div>
+            <div class="buttons">
+              <button class="btn add-to-cart-btn w-100" (click)="addToCart()">
+                add to cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- related products -->
+    <div class="product-related-box single-layout">
+      <div class="biolife-title-box lg-margin-bottom-26px-im">
+        <span class="biolife-icon icon-organic"></span>
+        <span class="subtitle">All the best item for You</span>
+        <h3 class="main-title">Related Products</h3>
+      </div>
+      <div class="row">
+        <div
+          *ngFor="let produit of relatedProds"
+          class="col-12 col-md-6 col-lg-3 my-3"
+        >
+          <div class="card text-center p-4">
+            <a routerLink="/produits/{{ produit.nom }}"
+              ><img src="{{ produit.image }}" alt="" class="card-img-top"
+            /></a>
+            <div class="card-body">
+              <a routerLink="/produits/{{ produit.nom }}">
+                <h5 class="prod-name">{{ produit.nom }}</h5>
+              </a>
+              <!-- <p class="text-muted">{{produit.categorie.nom}}</p> -->
+              <ins
+                ><span class="price-ins">{{
+                  produit.prix | currency: "MAD"
+                }}</span></ins
+              >
+              <del
+                ><span class="price-del">{{
+                  produit.prix | currency: "MAD"
+                }}</span></del
+              >
+              <hr />
+              <button class="btn btn-block btn-cart">ADD TO CART</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

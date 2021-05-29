@@ -1,0 +1,35 @@
+<div class="biolife-tab biolife-tab-contain sm-margin-top-34px">
+  <div class="tab-head tab-head__icon-top-layout icon-top-layout">
+    <ul ngbNav #nav="ngbNav" [(activeId)]="active" [destroyOnHide]="false"
+      class="tabs md-margin-bottom-35-im xs-margin-bottom-40-im">
+      <li *ngFor="let categorie of listeCategories;let i =index" (click)="onCategorieSelected($event,categorie.nom)"
+        [ngbNavItem]="i+1" [destroyOnHide]="false" class="tab-element">
+        <a ngbNavLink class="tab-link">{{ categorie.nom }}</a>
+        <ng-template ngbNavContent>
+          <div class="row">
+            <div *ngFor="let produit of listeProduits" class="col-sm-4 col-xs-6 my-2">
+              <div class="card text-center p-4">
+                <a routerLink="/produits/{{ produit.nom }}"><img src="{{produit.image}}" alt=""
+                    class="card-img-top"></a>
+                <div class="card-body">
+                  <a routerLink="/produits/{{ produit.nom }}">
+                    <h5 class="prod-name">{{produit.nom}}</h5>
+                  </a>
+                  <br>
+                  <ins><span class="price-ins">{{produit.prix | currency: 'MAD'}}</span></ins>
+                  <del><span class="price-del">{{produit.prix | currency: 'MAD'}}</span></del>
+                  <hr>
+                  <button class="btn btn-block btn-light btn-cart">ADD TO CART</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="float-right my-3">
+            <a routerLink="/categories/{{ categorie.nom }}" class="btn btn-bold" id="see-more">Voir Plus</a>
+          </div>
+        </ng-template>
+      </li>
+    </ul>
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+  </div>
+</div>

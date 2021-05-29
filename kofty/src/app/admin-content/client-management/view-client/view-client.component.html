@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="main-card mb-3 card my-5">
+    <div class="card-body">
+      <h2 class="card-title text-center">Consulter client</h2>
+      <hr>
+      <form class="my-5" *ngIf="client">
+        <div class="row">
+          <div class="col-md-6 offset-md-3">
+            <div class="row">
+              <div class="col-6">
+                <label for="nom">Nom :</label>
+              </div>
+              <div class="col-6">
+                <h3>{{ client.nom }}</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 offset-md-3">
+            <div class="row">
+              <div class="col-6">
+                <label for="prenom">Prenom :</label>
+              </div>
+              <div class="col-6">
+                <h3>{{ client.prenom }}</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 offset-md-3">
+            <div class="row">
+              <div class="col-6">
+                <label for="email">Email :</label>
+              </div>
+              <div class="col-6">
+                <h3>{{ client.email }}</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 offset-md-3">
+            <div class="row">
+              <div class="col-6">
+                <label for="dateNaissance">Date de Naissance :</label>
+              </div>
+              <div class="col-6">
+                <h3>{{ client.dateNaissance | date }}</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 offset-md-3">
+            <div class="row">
+              <div class="col-6">
+                <label for="dateEnregistrement">Date d'enregistrement :</label>
+              </div>
+              <div class="col-6">
+                <h3>{{ client.dateEnregistrement | date }}</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 offset-md-3">
+            <div class="row">
+              <div class="col-6">
+                <label for="statut">Statut :</label>
+              </div>
+              <div class="col-6">
+                <div class="mb-2 mr-2 badge badge-pill "
+                  [ngClass]="client.statut == 'active' ?'badge-success': 'badge-danger'">{{ client.statut }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="buttons-area my-5 text-center">
+          <button class="btn btn-danger mx-2" (click)="onDeleteclient()">Supprimer</button>
+          <button type="button" routerLink="/admin/clients/list" class="btn btn-light mx-2">Retour</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

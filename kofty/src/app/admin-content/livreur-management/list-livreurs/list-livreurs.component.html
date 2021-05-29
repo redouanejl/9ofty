@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-6 col-sm-12 my-5">
+      <div class="search-wrapper active">
+        <div class="input-holder">
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Type to search"
+          />
+          <button class="search-icon"><span></span></button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-12 my-5">
+      <div class="buttons-group pt-3">
+        <a routerLink="/admin/livreurs/add" class="btn bg-gofty text-white"
+          ><i class="fas fa-plus"></i> Nouveau
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-12">
+      <div class="main-card mb-3 card p-3">
+        <div class="card-title">Livreurs Recents</div>
+        <table class="mb-0 table table-hover text-center">
+          <thead class="bg-gofty">
+            <tr>
+              <th>Matricule</th>
+              <th>Nom</th>
+              <th>Prenom</th>
+              <th>Statut</th>
+              <th>Date Enregistrement</th>
+              <th>Voir</th>
+              <th>Modifier</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let livreur of listeLivreurs">
+              <td>{{ livreur.matricule }}</td>
+              <td>{{ livreur.nom }}</td>
+              <td>{{ livreur.prenom }}</td>
+              <td>{{ livreur.statut }}</td>
+              <td>{{ livreur.dateEnregistrement | date }}</td>
+              <td>
+                <a
+                  routerLink="/admin/livreurs/view/{{ livreur.id }}"
+                  class="gofty-icon"
+                  ><i class="fas fa-eye"></i
+                ></a>
+              </td>
+              <td>
+                <a
+                  routerLink="/admin/livreurs/edit/{{ livreur.id }}"
+                  class="gofty-icon"
+                  ><i class="fas fa-edit"></i
+                ></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="row" *ngIf="page !== 1">
+          <div class="col-md-6"></div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-9" style="padding-left: 30%">
+                <ngb-pagination
+                  [(page)]="page"
+                  [(pageSize)]="size"
+                  [(collectionSize)]="totalElements"
+                  [maxSize]="3"
+                  [boundaryLinks]="true"
+                >
+                </ngb-pagination>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

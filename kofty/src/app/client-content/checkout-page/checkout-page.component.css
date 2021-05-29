@@ -1,0 +1,53 @@
+.mat-stepper-vertical {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+
+::ng-deep .mat-step-header .mat-step-icon-selected,
+::ng-deep .mat-step-header .mat-step-icon-state-done,
+::ng-deep .mat-step-header .mat-step-icon-state-edit {
+  background-color: #7faf51 !important;
+  color: #fff;
+}
+
+::ng-deep .mat-form-field-underline {
+  background-color: #7faf51!important;
+}
+
+::ng-deep .mat-form-field-ripple {
+  background-color: #7faf51!important;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  color: #7faf51!important;
+}
+
+::ng-deep .mat-step-label,
+::ng-deep .mat-step-label-selected{
+    font-size: 18px;
+}
+
+::ng-deep .mat-step-label-selected{
+    font-weight: 700;
+}
+
+.btn-site{
+    background-color: #7faf51;
+    color: white;
+}
+
+button{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+*{
+    font-size: 14px;
+}
+
+input[type ="password"]{
+    border: none;
+}

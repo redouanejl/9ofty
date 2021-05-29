@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="main-card mb-3 card my-5">
+    <div class="card-body">
+      <h2 class="card-title text-center">Modifier Produit</h2>
+      <hr>
+      <form class="my-5" [formGroup]="form" (ngSubmit)="onUpdateProduit(form)" *ngIf="produit">
+        <div class="row">
+          <div class="col-md-6 offset-md-3">
+            <div class="form-group">
+              <img [src]="imageSrc" alt="produit-img" class="img-responsive w-50 h-50 mx-auto">
+              <hr>
+              <input type="file" class="form-control pb-5" formControlName="image" (change)="onFileChange($event)">
+            </div>
+            <div class="form-group my-5">
+              <input type="text" class="form-control" placeholder="Nom" formControlName="nom">
+              <div class="invalid-feedback" *ngIf="nom.touched && nom.invalid">
+                <sup>*</sup> Entrez un nom pour le produit!
+              </div>
+            </div>
+            <div class="form-group my-5">
+              <input type="number" class="form-control" name="prix" min="0" placeholder="Prix" formControlName="prix">
+              <div class="invalid-feedback" *ngIf="prix.touched && prix.invalid">
+                <sup>*</sup> Entrez un prix valide pour le produit!
+              </div>
+            </div>
+            <div class="form-group my-5">
+              <select name="contenance" class="form-control" formControlName="contenance">
+                <option value="Kg">Kg</option>
+                <option value="L">L</option>
+                <option value="Pcs">Pcs</option>
+              </select>
+            </div>
+            <div class="form-group my-5">
+              <select name="categorie" class="form-control" formControlName="categorie">
+                <option *ngFor="let cat of categories" [value]="cat.nom" #cat
+                  [selected]="produit.categorie.nom == cat.nom">{{ cat.nom }}</option>
+              </select>
+            </div>
+            <div class="form-group my-5">
+              <select name="statut" class="form-control" formControlName="statut">
+                <option value="active">active</option>
+                <option value="inactive">inactive</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="buttons-area text-center my-5">
+          <input type="submit" value="Modifier" class="btn bg-gofty mx-2" [disabled]="form.invalid">
+          <button type="button" routerLink="/admin/produits/list" class="btn btn-light mx-2">Annuler</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

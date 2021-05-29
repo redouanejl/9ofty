@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="main-card mb-3 card my-5">
+      <div class="card-body">
+        <h2 class="card-title text-center">Consulter categorie</h2>
+        <hr>
+        <form class="my-5" *ngIf="categorie">
+          <div class="row">
+            <div class="col-md-6 offset-md-3">
+              <div class="row">
+                <div class="col-6">
+                  <label for="nom">Nom :</label>
+                </div>
+                <div class="col-6">
+                  <h3>{{ categorie.nom }}</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="buttons-area my-5 text-center">
+            <button class="btn btn-danger mx-2" (click)="onDeleteCategorie()">Supprimer</button>
+            <button type="button" routerLink="/admin/categories/list" class="btn btn-light mx-2">Retour</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

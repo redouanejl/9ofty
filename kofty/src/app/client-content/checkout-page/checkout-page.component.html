@@ -1,0 +1,150 @@
+<div id="main-content" class="main-content">
+  <div class="container sm-margin-top-37px">
+    <div class="row">
+
+      <!--checkout progress box-->
+      <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12 mb-5 pb-3">
+        <mat-vertical-stepper [linear]="isLinear" #stepper>
+          <mat-step [stepControl]="authenticationFormGroup">
+            <form [formGroup]="authenticationFormGroup">
+              <ng-template matStepLabel>S'authentifier ou Creer un compte</ng-template>
+              <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Email*" formControlName="email" required>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput type="password" placeholder="Password*" formControlName="password" required>
+              </mat-form-field>
+              <div>
+                <button mat-button matStepperNext class="btn btn-site">Suivant</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="billingAddressForm">
+            <form [formGroup]="billingAddressForm">
+              <ng-template matStepLabel>Remplir l'adresse de facturation</ng-template>
+              <mat-form-field>
+                <mat-label>Adresse</mat-label>
+                <textarea matInput formControlName="address" placeholder="Ex. 1 Main St, New York, NY" required></textarea>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Ville</mat-label>
+                <input matInput formControlName="ville" placeholder="Ex. Casablanca" required>
+              </mat-form-field>
+              <div>
+                <button class="btn btn-light" mat-button matStepperPrevious>Retour</button>
+                <button class="btn btn-site" mat-button matStepperNext>Suivant</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="shippingAddressForm">
+            <form [formGroup]="shippingAddressForm">
+              <ng-template matStepLabel>Remplir l'adresse de livraison</ng-template>
+              <mat-form-field>
+                <mat-label>Adresse</mat-label>
+                <textarea matInput formControlName="address" placeholder="Ex. 1 Main St, New York, NY" required></textarea>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Ville</mat-label>
+                <input matInput formControlName="ville" placeholder="Ex. Casablanca" required>
+              </mat-form-field>
+              <div>
+                <button class="btn btn-light" mat-button matStepperPrevious>Retour</button>
+                <button class="btn btn-site" mat-button matStepperNext>Suivant</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="paiementForm">
+            <form [formGroup]="paiementForm">
+              <ng-template matStepLabel>Selectionner la method du paiement</ng-template>
+                
+                <!-- <input matInput formControlName="method" placeholder="Ex. COD" readonly required> -->
+                <mat-form-field appearance="fill">
+                    <mat-label>Méthode de paiement</mat-label>
+                    <select matNativeControl formControlName="method" required>
+                      <option value="COD">COD</option>
+                    </select>
+                    <mat-error *ngIf="paiementForm.hasError('required')">
+                      This field is required
+                    </mat-error>
+                  </mat-form-field>
+              <div>
+                <button class="btn btn-light" mat-button matStepperPrevious>Retour</button>
+                <button class="btn btn-site" mat-button matStepperNext>Suivant</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Terminer la commande</ng-template>
+            <p>Si vous avez termine,cliquez sur soumettre.</p>
+            <div>
+              <button class="btn btn-danger" mat-button (click)="stepper.reset()">Réinitialiser</button>
+              <button class="btn btn-light" mat-button matStepperPrevious>Retour</button>
+              <button class="btn btn-site" type="submit" (click)="onSubmit()">Soumettre</button>
+            </div>
+          </mat-step>
+        </mat-vertical-stepper>
+      </div>
+
+      <!--Order Summary-->
+      <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 sm-padding-top-48px sm-margin-bottom-0 xs-margin-bottom-15px">
+        <div class="order-summary sm-margin-bottom-80px">
+          <div class="title-block">
+            <h3 class="title">Order Summary</h3>
+            <a routerLink="/cart" class="link-forward">Edit cart</a>
+          </div>
+          <div class="cart-list-box short-type">
+            <span class="number">{{ totalQuantity }} items</span>
+            <ul class="cart-list">
+              <li class="cart-elem" *ngFor="let ligne of lignesCommande">
+                <div class="cart-item">
+                  <div class="product-thumb">
+                    <a class="prd-thumb" href="#">
+                      <figure><img src="{{ ligne.produit.image }}" width="113" height="113" alt="shop-cart">
+                      </figure>
+                    </a>
+                  </div>
+                  <div class="info">
+                    <span class="txt-quantity">{{ ligne.quantite }}x</span>
+                    <a href="#" class="pr-name">{{ ligne.produit.nom }}</a>
+                  </div>
+                  <div class="price price-contain">
+                    <ins><span
+                        class="price-amount">{{ ligne.produit.prix*ligne.quantite | currency: 'MAD' }}</span></ins>
+                    <del><span
+                        class="price-amount">{{ ligne.produit.prix*ligne.quantite+2 | currency: 'MAD' }}</span></del>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <ul class="subtotal">
+              <li>
+                <div class="subtotal-line">
+                  <b class="stt-name">Subtotal</b>
+                  <span class="stt-price">{{ totalPrice |currency: 'MAD' }}</span>
+                </div>
+              </li>
+              <li>
+                <div class="subtotal-line">
+                  <b class="stt-name">Shipping</b>
+                  <span class="stt-price">Free</span>
+                </div>
+              </li>
+              <li>
+                <div class="subtotal-line">
+                  <b class="stt-name">total:</b>
+                  <span class="stt-price">{{ totalPrice |currency: 'MAD' }}</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

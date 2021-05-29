@@ -1,0 +1,212 @@
+<div class="page-contain shopping-cart">
+  <!-- Main content -->
+  <div id="main-content" class="main-content">
+    <div class="container">
+      <!--Cart Table-->
+      <div class="shopping-cart-container">
+        <div class="row">
+          <div *ngIf="lignesCommande.length > 0">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my-3">
+              <h3 class="box-title">Votre panier</h3>
+              <form class="shopping-cart-form" action="#" method="post">
+                <table class="shop_table cart-form">
+                  <thead>
+                    <tr>
+                      <th class="product-name">Nom Produit</th>
+                      <th class="product-price">Prix</th>
+                      <th class="product-quantity">Quantite</th>
+                      <th class="product-subtotal">Total</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="cart_item" *ngFor="let ligne of lignesCommande">
+                      <td class="product-thumbnail" data-title="Product Name">
+                        <a class="prd-thumb" href="#">
+                          <figure>
+                            <img
+                              width="113"
+                              height="113"
+                              src="{{ ligne.produit.image }}"
+                              alt="shipping cart"
+                            />
+                          </figure>
+                        </a>
+                        <a class="prd-name" href="#">{{ ligne.produit.nom }}</a>
+                      </td>
+                      <td class="product-price" data-title="Price">
+                        <div class="price price-contain">
+                          <ins
+                            ><span class="price-amount">{{
+                              ligne.produit.prix | currency: "MAD"
+                            }}</span></ins
+                          >
+                          <del
+                            ><span class="price-amount">{{
+                              ligne.produit.prix + 2 | currency: "MAD"
+                            }}</span></del
+                          >
+                        </div>
+                      </td>
+                      <td class="product-quantity" data-title="Quantity">
+                        <div class="quantity-box type1">
+                          <div class="qty-input">
+                            <div class="row no-gutters">
+                              <div class="col-2">
+                                <button
+                                  class="btn btn-light mt-3 p-0"
+                                  width="15px"
+                                  height="15px"
+                                  (click)="incrementQuantity(ligne)"
+                                >
+                                  <img
+                                    src="../../assets/images/icons/plus.png"
+                                    class="w-100 h-100"
+                                    alt="+"
+                                  />
+                                </button>
+                              </div>
+                              <div class="col-1"></div>
+                              <div class="col-6">
+                                <input
+                                  type="text"
+                                  class="px-1 text-center"
+                                  value="{{ ligne.quantite }}"
+                                  readonly
+                                />
+                              </div>
+                              <div class="col-1"></div>
+                              <div class="col-2">
+                                <button
+                                  class="btn btn-light mt-3 p-0"
+                                  width="15px"
+                                  height="15px"
+                                  (click)="decrementQuantity(ligne)"
+                                >
+                                  <img
+                                    src="../../assets/images/icons/minus.png"
+                                    class="w-100 h-100"
+                                    alt="-"
+                                  />
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="product-subtotal" data-title="Total">
+                        <div class="price price-contain">
+                          <ins
+                            ><span class="price-amount">{{
+                              ligne.produit.prix * ligne.quantite
+                                | currency: "MAD"
+                            }}</span></ins
+                          >
+                          <del
+                            ><span class="price-amount">{{
+                              ligne.produit.prix * ligne.quantite + 2
+                                | currency: "MAD"
+                            }}</span></del
+                          >
+                        </div>
+                      </td>
+                      <td>
+                        <a style="cursor: pointer" class="remove text-danger"
+                          ><i
+                            class="fa fa-trash-o"
+                            aria-hidden="true"
+                            (click)="removeLigneCommande(ligne)"
+                          ></i
+                        ></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </form>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="shpcart-subtotal-block">
+                <div class="subtotal-line">
+                  <b class="stt-name"
+                    >Subtotal
+                    <span class="sub">({{ totalQuantity }} items)</span></b
+                  >
+                  <span class="stt-price">{{
+                    totalPrice | currency: "MAD"
+                  }}</span>
+                </div>
+                <div class="subtotal-line">
+                  <b class="stt-name">Shipping</b>
+                  <span class="stt-price">MAD 0.00</span>
+                </div>
+                <div class="subtotal-line">
+                  <b class="stt-name">Total</b>
+                  <span class="stt-price">{{
+                    totalPrice | currency: "MAD"
+                  }}</span>
+                </div>
+                <div class="btn-checkout">
+                  <a routerLink="/checkout" class="btn checkout w-50 mx-auto"
+                    >Check out</a
+                  >
+                </div>
+                <p class="pickup-info text-center">
+                  <b>Free Pickup</b> is available as soon as today More about
+                  shipping and pickup
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            *ngIf="lignesCommande.length === 0"
+            ng
+            class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+          >
+            <div class="alert alert-danger text-center mt-4" role="alert">
+              <h2>Votre panier est vide.</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Related Product-->
+      <div class="product-related-box single-layout">
+        <div class="biolife-title-box lg-margin-bottom-26px-im">
+          <span class="biolife-icon icon-organic"></span>
+          <span class="subtitle">All the best item for You</span>
+          <h3 class="main-title">Related Products</h3>
+        </div>
+        <div class="row">
+          <div
+            *ngFor="let produit of relatedProds"
+            class="col-12 col-md-6 col-lg-3 my-3"
+          >
+            <div class="card text-center p-4">
+              <a routerLink="/produits/{{ produit.nom }}"
+                ><img src="{{ produit.image }}" alt="" class="card-img-top"
+              /></a>
+              <div class="card-body">
+                <a routerLink="/produits/{{ produit.nom }}">
+                  <h5 class="prod-name">{{ produit.nom }}</h5>
+                </a>
+                <p class="text-muted">{{ produit.categorie.nom }}</p>
+                <ins
+                  ><span class="price-ins">{{
+                    produit.prix | currency: "MAD"
+                  }}</span></ins
+                >
+                <del
+                  ><span class="price-del">{{
+                    produit.prix | currency: "MAD"
+                  }}</span></del
+                >
+                <hr />
+                <button class="btn btn-block btn-cart">ADD TO CART</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

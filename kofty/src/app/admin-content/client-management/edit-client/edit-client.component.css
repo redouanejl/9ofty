@@ -1,0 +1,50 @@
+.mat-radio-button~.mat-radio-button {
+  margin-left: 16px;
+}
+
+input.ng-touched.ng-invalid,
+select.ng-touched.ng-invalid {
+  border: 1px solid red !important;
+}
+
+.invalid-feedback {
+  display: block !important;
+}
+
+#date-picker {
+  border: none !important;
+}
+
+::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #7faf51 !important;
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: #7faf51;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  color: #7faf51 !important;
+}
+
+::ng-deep.mat-form-field-underline {
+  background-color: #7faf51 !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+  background-color: #7faf51 !important;
+  ;
+}
+
+::ng-deep .mat-form-field-label {
+  color: #7faf51 !important;
+}
+
+::ng-deep .mat-calendar-body-selected {
+  background-color: #7faf51 !important;
+  color: #fff;
+}
+
+mat-datepicker-toggle {
+  color: #7faf51 !important;
+}
