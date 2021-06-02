@@ -3,6 +3,7 @@ package ma.cigma.ofty.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
@@ -21,6 +22,8 @@ import lombok.Setter;
 @Setter
 public class Livreur extends Utilisateur implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+
 	private String matricule;
 
 	private String lattitude;
@@ -33,15 +36,19 @@ public class Livreur extends Utilisateur implements Serializable {
 	@OneToMany(mappedBy = "livreur")
 	private List<Commande> listeCommandes;
 
-	public Livreur(long id, String TitreSocial, String nom, String prenom, String email, String motDePasse,
-			Date dateNaissance, String statut, Date dateEnregistrement, String matricule, String lattitude,
-			String longitude, List<Stock> listeStockes, List<Commande> listeCommandes) {
-		super(id, TitreSocial, nom, prenom, email, motDePasse, dateNaissance, statut, dateEnregistrement);
+	public Livreur(long id, String TitreSocial, String nom, String prenom, String username, String email,
+			String motDePasse, Date dateNaissance, String statut, Date dateEnregistrement, Set<Role> roles,
+			String matricule, String lattitude, String longitude, List<Stock> listeStockes,
+			List<Commande> listeCommandes) {
+		super(id, TitreSocial, nom, prenom, username, email, motDePasse, dateNaissance, statut, dateEnregistrement,
+				roles);
 		this.matricule = matricule;
 		this.lattitude = lattitude;
 		this.longitude = longitude;
 		this.listeStockes = listeStockes;
 		this.listeCommandes = listeCommandes;
 	}
+
+	
 
 }

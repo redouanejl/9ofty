@@ -1,3 +1,5 @@
+import { InscriptionComponent } from './auth/inscription/inscription.component';
+import { ConnexionComponent } from './auth/connexion/connexion.component';
 import { AddLivreurComponent } from './admin-content/livreur-management/add-livreur/add-livreur.component';
 import { ViewLivreurComponent } from './admin-content/livreur-management/view-livreur/view-livreur.component';
 import { EditLivreurComponent } from './admin-content/livreur-management/edit-livreur/edit-livreur.component';
@@ -99,6 +101,8 @@ const routes: Routes = [
       { path: 'cart', component: CartPageComponent },
       { path: 'produits/:nom', component: PageProduitComponent },
       { path: 'categories/:nom', component: ListeProduitsComponent },
+      { path: 'connexion', component: ConnexionComponent },
+      { path: 'inscription', component: InscriptionComponent },
       { path: '**', component: NotFoundComponent },
     ],
   },

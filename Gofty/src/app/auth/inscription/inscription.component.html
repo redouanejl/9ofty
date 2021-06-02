@@ -1,0 +1,84 @@
+<div id="main-content" class="main-content">
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <!--Form Sign In-->
+      <div class="col-lg-6 col-offset col-md-8 col-sm-12 col-xs-12">
+        <div class="signin-container">
+          <form [formGroup]="form" (ngSubmit)="onSignup(form)">
+            <div class="form-row">
+              <div class="col-12 mb-3">
+                <mat-radio-group
+                  aria-label="Titre Sociale"
+                  formControlName="titreSocial"
+                >
+                  <mat-radio-button value="Mr">Mr</mat-radio-button>
+                  <mat-radio-button value="Mme">Mme</mat-radio-button>
+                  <mat-radio-button value="Mrs">Mrs</mat-radio-button>
+                </mat-radio-group>
+              </div>
+              <div class="col-6">
+                <label for="fid-name">Nom:</label>
+                <input type="text" class="txt-input" formControlName="nom" />
+              </div>
+              <div class="col-6">
+                <label for="fid-name">Prenom:</label>
+                <input type="text" class="txt-input" formControlName="prenom" />
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="fid-name"
+                >Username:<span class="requite">*</span></label
+              >
+              <input type="text" class="txt-input" formControlName="username" />
+              <div
+                class="invalid-feedback"
+                *ngIf="username.touched && username.invalid"
+              >
+                <sup>*</sup> Username est obligatoire!
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="fid-name">Email:<span class="requite">*</span></label>
+              <input type="email" class="txt-input" formControlName="email" />
+              <div
+                class="invalid-feedback"
+                *ngIf="email.touched && email.invalid"
+              >
+                <sup>*</sup> Email est obligatoire!
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="fid-pass"
+                >Mot de passe:<span class="requite">*</span></label
+              >
+              <input
+                type="password"
+                id="fid-pass"
+                formControlName="password"
+                class="txt-input"
+              />
+              <div
+                class="invalid-feedback"
+                *ngIf="password.touched && password.invalid"
+              >
+                <sup>*</sup> Le mot de passe est obligatoire!
+              </div>
+            </div>
+            <div class="form-row wrap-btn">
+              <button
+                class="btn btn-submit btn-bold"
+                type="submit"
+                [disabled]="form.invalid"
+              >
+                S'inscrire
+              </button>
+              <a routerLink="/connexion" class="link-to-help"
+                >vous avez deja un compte?</a
+              >
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

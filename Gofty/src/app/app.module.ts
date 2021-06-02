@@ -1,3 +1,4 @@
+import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { AdminProduitService } from './services/admin-produit.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -32,8 +33,8 @@ import { ClientContentComponent } from './client-content/client-content.componen
 import { AdminHomeComponent } from './admin-content/admin-home/admin-home.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { LivreurManagementComponent } from './admin-content/livreur-management/livreur-management.component';
 import { EditCommandeComponent } from './admin-content/commande-management/edit-commande/edit-commande.component';
 import { ViewCommandeComponent } from './admin-content/commande-management/view-commande/view-commande.component';
@@ -54,7 +55,9 @@ import { ListLivreursComponent } from './admin-content/livreur-management/list-l
 import { EditLivreurComponent } from './admin-content/livreur-management/edit-livreur/edit-livreur.component';
 import { ViewLivreurComponent } from './admin-content/livreur-management/view-livreur/view-livreur.component';
 import { AddLivreurComponent } from './admin-content/livreur-management/add-livreur/add-livreur.component';
- 
+import { ConnexionComponent } from './auth/connexion/connexion.component';
+import { InscriptionComponent } from './auth/inscription/inscription.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,6 +98,8 @@ import { AddLivreurComponent } from './admin-content/livreur-management/add-livr
     EditLivreurComponent,
     ViewLivreurComponent,
     AddLivreurComponent,
+    ConnexionComponent,
+    InscriptionComponent,
   ],
   imports: [
     BrowserModule,
@@ -113,17 +118,19 @@ import { AddLivreurComponent } from './admin-content/livreur-management/add-livr
     MatDatepickerModule,
     MatNativeDateModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(
-     {
-       timeOut: 1500,
-       progressBar: false,
-       progressAnimation: 'increasing',
-       positionClass:'toast-bottom-right'
-     }
-    )
+    ToastrModule.forRoot({
+      timeOut: 1500,
+      progressBar: false,
+      progressAnimation: 'increasing',
+      positionClass: 'toast-bottom-right',
+    }),
   ],
-  providers: [ CartService, ProduitService , AdminProduitService ],
-  bootstrap: [AppComponent]
+  providers: [
+    CartService,
+    ProduitService,
+    AdminProduitService,
+    authInterceptorProviders,
+  ],
+  bootstrap: [AppComponent],
 })
- 
-export class AppModule { }
+export class AppModule {}

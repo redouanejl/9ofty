@@ -1,0 +1,48 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.bg-gofty {
+  background-color: #7faf51;
+  color: #fff;
+}
+
+.gofty-icon {
+  color: #333 !important;
+}
+
+.gofty-icon:hover {
+  color: #7faf51 !important;
+}
+
+.btn-icon {
+  background-color: #7faf51 !important;
+  border: none !important;
+}
+
+.form-control {
+  font-size: 1.5rem !important;
+}
+
+.card-title {
+  color: #7faf51;
+}
+
+input.ng-touched.ng-invalid,
+select.ng-touched.ng-invalid {
+  border: 1px solid red !important;
+}
+
+.invalid-feedback {
+  display: block !important;
+}
+
+.login-link {
+  cursor: pointer;
+}
