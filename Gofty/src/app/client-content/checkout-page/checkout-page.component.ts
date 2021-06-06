@@ -1,3 +1,4 @@
+import { TokenStorageService } from './../../services/token-storage.service';
 import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
@@ -31,13 +32,15 @@ export class CheckoutPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.cartService.cartItems.subscribe((data) => {
+      this.lignesCommande = data;
+    });
     this.cartService.totalPrice.subscribe((data) => {
       this.totalPrice = data;
     });
     this.cartService.totalQuantity.subscribe((data) => {
       this.totalQuantity = data;
     });
-    this.lignesCommande = this.cartService.getLignesCommande();
 
     this.authenticationFormGroup = this._formBuilder.group({
       email: new FormControl('', [

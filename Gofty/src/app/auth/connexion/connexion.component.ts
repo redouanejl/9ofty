@@ -1,3 +1,4 @@
+import { CartService } from './../../services/cart.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TokenStorageService } from './../../services/token-storage.service';
@@ -16,8 +17,8 @@ export class ConnexionComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private tokenStorageService: TokenStorageService,
-    private toastr: ToastrService,
-    private router: Router
+    private cartService: CartService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -38,6 +39,8 @@ export class ConnexionComponent implements OnInit {
   onLogin(form: FormGroup): void {
     this.authService.login(this.username.value, this.password.value).subscribe(
       (data) => {
+        const cartItems = this.tokenStorageService.getCartItems();
+        this.cartService.sessionCartItem = cartItems;
         this.tokenStorageService.saveToken(data.token);
         this.tokenStorageService.saveUser(data);
         this.toastr.success('connexion avec succes!');
@@ -47,6 +50,7 @@ export class ConnexionComponent implements OnInit {
         if (user.roles[0] === 'ROLE_ADMIN') {
           window.location.replace('/admin');
         } else {
+          this.cartService.getCartByClient();
           window.location.replace('/');
         }
       },

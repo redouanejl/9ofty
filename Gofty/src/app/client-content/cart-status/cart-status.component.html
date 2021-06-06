@@ -7,7 +7,7 @@
     <span class="title">Mon panier </span>
     <span class="sub-total">{{ totalPrice | currency: "MAD" }}</span>
   </a>
-  <div class="cart-content" *ngIf="lignesCommande.length > 0">
+  <div class="cart-content">
     <div class="cart-inner">
       <ul class="products">
         <li *ngFor="let item of lignesCommande">

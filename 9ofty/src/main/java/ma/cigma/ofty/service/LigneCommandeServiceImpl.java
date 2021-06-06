@@ -3,7 +3,6 @@ package ma.cigma.ofty.service;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +12,6 @@ import ma.cigma.ofty.model.LigneCommande;
 
 @Service
 @Transactional
-@CrossOrigin("http://localhost:4200")
 public class LigneCommandeServiceImpl implements LigneCommandeService {
 
 	@Autowired
@@ -30,7 +28,6 @@ public class LigneCommandeServiceImpl implements LigneCommandeService {
 		
 		LigneCommande old = ligneCommandeRepository.findById(ligneCommande.getId()).get();
 		
-		old.setCommande(ligneCommande.getCommande());
 		old.setProduit(ligneCommande.getProduit());
 		old.setQuantite(ligneCommande.getQuantite());
 		
@@ -40,7 +37,7 @@ public class LigneCommandeServiceImpl implements LigneCommandeService {
 	@Override
 	public void deleteLigneCommande(long id) {
 		
-		ligneCommandeRepository.deleteById(id);
+		ligneCommandeRepository.deleteLigne(id);
 	}
 
 	@Override
@@ -56,9 +53,10 @@ public class LigneCommandeServiceImpl implements LigneCommandeService {
 	}
 
 	@Override
-	public List<LigneCommande> selectLigneByCommande(Commande c) {
+	public List<LigneCommande> getLignesByCommande(Commande commande) {
 		
-		return ligneCommandeRepository.findByCommande(c);
+		return ligneCommandeRepository.findByCommande(commande);
 	}
+
 
 }

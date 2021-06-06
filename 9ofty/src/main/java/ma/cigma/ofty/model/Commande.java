@@ -2,6 +2,7 @@ package ma.cigma.ofty.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,16 +12,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Getter
 @Setter
+@ToString
 public class Commande implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -45,6 +49,10 @@ public class Commande implements Serializable{
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "shipping_adresse_id")
 	private Adresse shippingAdresse;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "commande")
+	@JsonIgnore
+	private List<LigneCommande> lignesCommande;
 	
 	@ManyToOne
 	@JoinColumn(name = "client_id")

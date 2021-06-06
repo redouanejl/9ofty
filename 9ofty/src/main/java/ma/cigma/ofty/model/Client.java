@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -35,6 +37,7 @@ public class Client extends Utilisateur implements Serializable {
 	private Adresse shippingAdresse;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
+	@JsonIgnore
 	private List<Commande> listeCommandes;
 
 	public Client(long id, String TitreSocial, String nom, String prenom, String username, String email,

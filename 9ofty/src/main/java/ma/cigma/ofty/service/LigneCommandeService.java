@@ -17,6 +17,6 @@ public interface LigneCommandeService {
 	
 	List<LigneCommande> selectLigneCommandes();
 	
-	List<LigneCommande> selectLigneByCommande(Commande c);
+	List<LigneCommande> getLignesByCommande(Commande commande);
 
 }

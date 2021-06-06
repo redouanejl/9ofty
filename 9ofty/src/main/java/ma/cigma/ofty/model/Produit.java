@@ -2,6 +2,7 @@ package ma.cigma.ofty.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,6 +26,7 @@ public class Produit implements Serializable{
 
 	private String nom;
 	
+	@Column(columnDefinition = "varchar(255) default 'https://blackmantkd.com/wp-content/uploads/2017/04/default-image-620x600.jpg'")
 	private String image;
 	
 	private float prix;
